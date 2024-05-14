@@ -32,7 +32,7 @@ Testing yielded some interesting results. The R-Tree performed extremely well wh
   - R-Tree: 32.2 ms
   - Non-R-Tree: 15 ms
 
-![](chart.png)
+![](/assets/chart.png)
 
 I don't have any metrics on the R-Tree internal implementation, but it's likely related to how R-Tree's are structured. Each node is a tuple containing a rectangle and items that lie within the rectangle. The items can be either a child node or leaf nodes which the rectangle contains. When searching for items, we traverse the tree by checking the rectangles to see if they contain our item. Since we do not have to check every item in the collection, searches happen very quickly. Creating the rectangle keys will also create additional items in the collection which may explain the performance degradation above 20k items when the search area is too large.
 
